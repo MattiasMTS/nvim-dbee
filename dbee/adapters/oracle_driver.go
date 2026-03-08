@@ -34,9 +34,6 @@ func (d *oracleDriver) Columns(opts *core.TableOptions) ([]*core.Column, error) 
 			col.column_name,
 			col.data_type
 		FROM sys.all_tab_columns col
-		INNER JOIN sys.all_tables t
-			ON col.owner = t.owner
-			AND col.table_name = t.table_name
 		WHERE col.owner = '%s'
 			AND col.table_name = '%s'
 		ORDER BY col.owner, col.table_name, col.column_id `,
